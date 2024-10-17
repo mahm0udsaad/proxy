@@ -4,20 +4,25 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 
 export default function Navbar() {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(pathname !== "/" ? true : false);
   const { isSignedIn, user } = useUser();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10) {
+      if (pathname !== "/") {
+        setIsScrolled(true);
+      }
+      if (window.scrollY > 10 && pathname === "/") {
         setIsScrolled(true);
       } else {
-        setIsScrolled(false);
+        setIsScrolled(true);
       }
     };
 
@@ -27,6 +32,7 @@ export default function Navbar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  console.log(pathname);
 
   return (
     <motion.nav
@@ -43,15 +49,16 @@ export default function Navbar() {
         <div className="flex justify-between items-center">
           <Link
             href="/"
-            className={`flex items-center text-2xl font-bold transition-colors duration-300 ${
+            className={`flex gap-4 items-center text-2xl font-bold transition-colors duration-300 ${
               isScrolled ? "text-blue-900" : "text-white"
             }`}
           >
             <Image
+              priority
               src={"/logo.png"}
               alt={"logo"}
-              width={70}
-              height={70}
+              width={50}
+              height={50}
               className="max-w-full h-auto"
             />
             <span className="">PowerProxy</span>
@@ -114,8 +121,8 @@ export default function Navbar() {
                 <Image
                   src={user.imageUrl}
                   alt="User Profile Image"
-                  width={70}
-                  height={70}
+                  width={40}
+                  height={40}
                   className="rounded-full object-cover"
                 />
               </Link>
