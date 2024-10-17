@@ -7,8 +7,8 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 
 export default function Navbar() {
-  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(pathname !== "/" ? true : false);
   const { isSignedIn, user } = useUser();
 
@@ -16,13 +16,10 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (pathname !== "/") {
-        setIsScrolled(true);
-      }
       if (window.scrollY > 10 && pathname === "/") {
         setIsScrolled(true);
-      } else {
-        setIsScrolled(true);
+      } else if (window.scrollY === 0 && pathname === "/") {
+        setIsScrolled(false);
       }
     };
 
@@ -31,8 +28,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
-  console.log(pathname);
+  }, [pathname]);
 
   return (
     <motion.nav
