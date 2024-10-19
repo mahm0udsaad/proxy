@@ -8,17 +8,16 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const pathname = usePathname();
-  const [isScrolled, setIsScrolled] = useState(pathname !== "/" ? true : false);
+  const [isScrolled, setIsScrolled] = useState(false);
   const { isSignedIn, user } = useUser();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 10 && pathname === "/") {
+      if (window.scrollY > 10) {
         setIsScrolled(true);
-      } else if (window.scrollY === 0 && pathname === "/") {
+      } else if (window.scrollY === 0) {
         setIsScrolled(false);
       }
     };
@@ -28,7 +27,7 @@ export default function Navbar() {
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
-  }, [pathname]);
+  }, []);
 
   return (
     <motion.nav
