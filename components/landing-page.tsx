@@ -6,6 +6,8 @@ import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
 import Features from "@/components/component/features-list";
 import { clientLogos, pricingPlans, testimonials, faqs } from "@/data";
+import Link from "next/link";
+
 export default function LandingPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
@@ -16,7 +18,6 @@ export default function LandingPage() {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
   };
-
   const SectionWrapper = ({ children }: { children: React.ReactNode }) => {
     const ref = React.useRef(null);
     const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -219,7 +220,8 @@ export default function LandingPage() {
                         </li>
                       ))}
                     </ul>
-                    <button
+                    <Link
+                      href={"/billing"}
                       className={`w-full font-bold py-2 px-4 rounded transition-colors ${
                         plan.name === "Premium"
                           ? "bg-white text-blue-600 hover:bg-gray-100"
@@ -227,7 +229,7 @@ export default function LandingPage() {
                       }`}
                     >
                       Get started
-                    </button>
+                    </Link>
                   </div>
                 </motion.div>
               ))}
