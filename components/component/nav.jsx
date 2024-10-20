@@ -30,7 +30,7 @@ export default function Navbar() {
 
   return (
     <motion.nav
-      className="fixed top-0 left-0 right-0 z-50 px-4 py-6"
+      className="fixed top-0 left-0 right-0 z-50 px-4 py-2"
       initial={{ backgroundColor: "rgba(255, 255, 255, 0)" }}
       animate={{
         backgroundColor: isScrolled
@@ -51,7 +51,7 @@ export default function Navbar() {
               priority
               src={"/logo.png"}
               alt={"logo"}
-              width={50}
+              width={45}
               height={50}
               className="max-w-full h-auto"
             />

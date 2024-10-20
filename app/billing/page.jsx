@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { CreditCard, Bitcoin, Globe, Shield, Zap, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,12 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { testimonials } from "../../data";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
 export default function BillingPage() {
-  const [duration, setDuration] = useState("7");
+  const searchParams = useSearchParams();
+  const durationParam = searchParams.get("duration");
+  const [duration, setDuration] = useState(durationParam ? durationParam : "7");
   const [rotation, setRotation] = useState("5");
   const [paymentMethod, setPaymentMethod] = useState("credit-card");
 

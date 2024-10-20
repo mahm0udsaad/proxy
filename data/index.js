@@ -13,6 +13,7 @@ export const pricingPlans = [
     description: "Mobile proxy, unlimited browsing, AI suggestions",
     price: "$1",
     period: "/day",
+    duration: "1",
     features: [
       "Access to mobile proxy with no cost",
       "Unlimited browsing for casual users",
@@ -25,6 +26,7 @@ export const pricingPlans = [
     description: "High-speed proxy, advanced analytics, priority support",
     price: "$9.99",
     period: "/week",
+    duration: "7",
     features: [
       "High-speed mobile proxies for fast and secure browsing",
       "Advanced analytics dashboard to monitor proxy usage",
@@ -36,6 +38,7 @@ export const pricingPlans = [
     name: "Enterprise",
     description: "Custom proxies, dedicated support, unlimited data",
     price: "$30",
+    duration: "30",
     period: "/month",
     features: [
       "Custom mobile proxy setup tailored for your business",

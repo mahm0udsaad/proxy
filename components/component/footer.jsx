@@ -126,10 +126,28 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="mt-8 pt-8 border-t border-gray-700 text-center">
+        <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-700 text-center">
           <p className="text-gray-300">
             &copy; 2024 MobileProxies. All rights reserved.
           </p>
+          <ul className="flex gap-4 items-center text-xs">
+            <li>
+              <Link
+                href="/privacy-policy"
+                className="text-gray-300 hover:text-white transition-colors underline"
+              >
+                Privacy Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                href="/terms-of-service"
+                className="text-gray-300 hover:text-white transition-colors underline"
+              >
+                Terms of Service
+              </Link>
+            </li>
+          </ul>
         </div>
       </div>
     </footer>

@@ -221,7 +221,10 @@ export default function LandingPage() {
                       ))}
                     </ul>
                     <Link
-                      href={"/billing"}
+                      href={{
+                        pathname: "/billing",
+                        query: { duration: String(plan.duration) },
+                      }}
                       className={`w-full font-bold py-2 px-4 rounded transition-colors ${
                         plan.name === "Premium"
                           ? "bg-white text-blue-600 hover:bg-gray-100"
