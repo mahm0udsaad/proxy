@@ -133,7 +133,7 @@ export default function Footer() {
           <ul className="flex gap-4 items-center text-xs">
             <li>
               <Link
-                href="/privacy-policy"
+                href="/privacy-police"
                 className="text-gray-300 hover:text-white transition-colors underline"
               >
                 Privacy Policy
@@ -141,7 +141,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                href="/terms-of-service"
+                href="/terms-and-conditions"
                 className="text-gray-300 hover:text-white transition-colors underline"
               >
                 Terms of Service

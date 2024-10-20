@@ -250,7 +250,7 @@ export default function BillingPage() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <Card className="bg-white shadow-xl rounded-lg overflow-hidden">
+            <Card className="sticky top-16 bg-white shadow-xl rounded-lg overflow-hidden">
               <CardHeader className="bg-gray-50 border-b border-gray-200 p-6">
                 <CardTitle className="text-2xl font-bold text-gray-900">
                   Why Choose Our Mobile Proxies?

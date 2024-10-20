@@ -1,5 +1,5 @@
 "use client";
-import { useUser } from "@clerk/clerk-react";
+import { UserButton, useUser } from "@clerk/clerk-react";
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
@@ -111,15 +111,7 @@ export default function Navbar() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             {isSignedIn ? (
-              <Link href="/profile">
-                <Image
-                  src={user.imageUrl}
-                  alt="User Profile Image"
-                  width={40}
-                  height={40}
-                  className="rounded-full object-cover"
-                />
-              </Link>
+              <UserButton className="size-xl" />
             ) : (
               <>
                 <Link
