@@ -1,19 +1,31 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
 import Features from "@/components/component/features-list";
 import { clientLogos, pricingPlans, testimonials, faqs } from "@/data";
 import Link from "next/link";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "./ui/accordion";
 
 export default function LandingPage() {
   const [openFAQ, setOpenFAQ] = useState<number | null>(null);
 
   const toggleFAQ = (index: number) =>
     setOpenFAQ(openFAQ === index ? null : index);
+  const videoRef = useRef<HTMLVideoElement>(null);
 
+  useEffect(() => {
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+  }, []);
   const fadeInUpVariants = {
     hidden: { opacity: 0, y: 20 },
     visible: { opacity: 1, y: 0 },
@@ -97,16 +109,30 @@ export default function LandingPage() {
                 Get Started
               </button>
             </div>
-            <div className="md:w-1/2">
-              <SectionWrapper>
+            <div className="md:w-1/2 flex justify-center items-center">
+              {/* Display the SVG frame */}
+              <div className="relative w-64 h-auto">
                 <Image
-                  src="/5g-proxy-DWArAP9q.png"
-                  alt="Mobile Proxies Illustration"
-                  width={600}
-                  height={400}
+                  src="/frame.svg"
+                  alt="Mobile frame"
+                  width={256}
+                  height={512}
                   className="w-full h-auto"
                 />
-              </SectionWrapper>
+
+                {/* Overlay the video */}
+                <div className="absolute top-[8px] left-[13px] w-[90%] h-[97%] overflow-hidden rounded-lg">
+                  <video
+                    ref={videoRef}
+                    src="https://www.germanproxy.io/wp-content/uploads/2024/10/Proxy-Speedtest.mp4"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover rounded-[25px]"
+                  />
+                </div>
+              </div>
             </div>
           </div>
         </header>
@@ -299,40 +325,18 @@ export default function LandingPage() {
             Find answers to common questions about our mobile proxies
           </p>
           <div className="max-w-3xl mx-auto">
-            {faqs.map((faq, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="mb-4"
-              >
-                <button
-                  className="flex justify-between items-center w-full text-left font-bold text-lg p-4 bg-gray-100 hover:bg-gray-200 transition-colors rounded-lg"
-                  onClick={() => toggleFAQ(index)}
-                >
-                  {faq.question}
-                  {openFAQ === index ? (
-                    <ChevronUp className="w-5 h-5" />
-                  ) : (
-                    <ChevronDown className="w-5 h-5" />
-                  )}
-                </button>
-                <AnimatePresence>
-                  {openFAQ === index && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="p-4 bg-white"
-                    >
-                      <p className="text-gray-700">{faq.answer}</p>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            ))}
+            <Accordion
+              type="single"
+              collapsible
+              className="w-full max-w-3xl mx-auto"
+            >
+              {faqs.map((faq, index) => (
+                <AccordionItem key={index} value={`item-${index}`}>
+                  <AccordionTrigger>{faq.question}</AccordionTrigger>
+                  <AccordionContent>{faq.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
