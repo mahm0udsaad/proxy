@@ -2,8 +2,8 @@
 
 import React, { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence, useInView } from "framer-motion";
-import { Check, ChevronDown, ChevronUp, Star } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import { Check, Star } from "lucide-react";
 import Features from "@/components/component/features-list";
 import { clientLogos, pricingPlans, testimonials, faqs } from "@/data";
 import Link from "next/link";
@@ -169,7 +169,7 @@ export default function LandingPage() {
       <Features />
 
       <SectionWrapper>
-        <section className="bg-white py-16">
+        <section id="pricing" className="bg-white py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-4xl font-bold text-center mb-4">
               Pricing Plans
@@ -316,7 +316,7 @@ export default function LandingPage() {
         </section>
       </SectionWrapper>
 
-      <section className="bg-white py-16">
+      <section id="faq" className="bg-white py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-center mb-4">
             Frequently Asked Questions

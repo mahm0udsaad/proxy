@@ -118,7 +118,10 @@ const FeatureItem = ({ feature, index }) => {
 
 export default function Features() {
   return (
-    <section className="bg-gradient-to-b from-gray-100 to-white py-16">
+    <section
+      id="features"
+      className="bg-gradient-to-b from-gray-100 to-white py-16"
+    >
       <div className="container mx-auto px-4">
         <h2 className="text-4xl font-bold text-center mb-4">Key Features</h2>
         <p className="text-xl text-center text-gray-600 mb-12">

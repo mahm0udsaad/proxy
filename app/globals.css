@@ -79,6 +79,10 @@ body {
   }
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 .cl-internal-1hp5nqm {
   display: none;
 }

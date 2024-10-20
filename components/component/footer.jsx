@@ -9,13 +9,13 @@ export default function Footer() {
           <div>
             <Link
               href="/"
-              className={`flex items-center text-2xl font-bold transition-colors duration-300 `}
+              className={`mb-3 flex items-center text-2xl font-bold transition-colors duration-300 `}
             >
               <Image
                 src={"/logo.png"}
                 alt={"logo"}
-                width={70}
-                height={70}
+                width={40}
+                height={40}
                 className="max-w-full h-auto"
               />
               <span className="">PowerProxy</span>
@@ -29,7 +29,7 @@ export default function Footer() {
             <ul className="space-y-2">
               <li>
                 <Link
-                  href="#"
+                  href="/"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Home
@@ -37,7 +37,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#features"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Features
@@ -45,7 +45,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#pricing"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   Pricing
@@ -53,7 +53,7 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="#"
+                  href="#faq"
                   className="text-gray-300 hover:text-white transition-colors"
                 >
                   FAQ
