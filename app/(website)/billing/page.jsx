@@ -21,7 +21,7 @@ import {
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { testimonials } from "../../data";
+import { testimonials } from "../../../data";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 

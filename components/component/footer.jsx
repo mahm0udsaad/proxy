@@ -126,7 +126,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-        <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-700 text-center">
+        <div className="flex justify-between items-center mt-8 pt-8 border-t border-gray-400 text-center">
           <p className="text-gray-300">
             &copy; 2024 MobileProxies. All rights reserved.
           </p>

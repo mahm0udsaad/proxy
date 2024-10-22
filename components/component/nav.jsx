@@ -4,12 +4,14 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
+import { LayoutDashboard } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 export default function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { isSignedIn, user } = useUser();
-
+  const { isSignedIn } = useUser();
+  const router = useRouter();
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   useEffect(() => {
@@ -111,7 +113,15 @@ export default function Navbar() {
           </div>
           <div className="hidden md:flex items-center space-x-4">
             {isSignedIn ? (
-              <UserButton className="size-xl" />
+              <UserButton className="size-xl">
+                <UserButton.MenuItems>
+                  <UserButton.Action
+                    label="Dashboard"
+                    labelIcon={<LayoutDashboard className="size-4" />}
+                    onClick={() => router.push("/dashboard")}
+                  />
+                </UserButton.MenuItems>
+              </UserButton>
             ) : (
               <>
                 <Link
