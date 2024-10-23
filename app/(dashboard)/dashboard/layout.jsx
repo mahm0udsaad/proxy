@@ -5,7 +5,7 @@ export default function Layout({ children }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="bg-gray-100 w-full">{children}</main>
+      <main className="bg-gray-100 w-full overflow-x-hidden">{children}</main>
     </SidebarProvider>
   );
 }

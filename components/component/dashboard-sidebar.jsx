@@ -46,7 +46,7 @@ const proxyManagementItems = [
     title: "Billing & Renewals",
     url: "#",
     icon: CreditCard,
-    link: "/dashboard/billing",
+    link: "/dashboard/proxy-renewals",
   },
 ];
 
