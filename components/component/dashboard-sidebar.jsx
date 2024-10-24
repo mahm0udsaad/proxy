@@ -67,27 +67,9 @@ const accountItems = [
 
 const knowledgeDeskItems = [
   {
-    title: "Documentation",
-    url: "#",
-    icon: BookOpen,
-  },
-  {
     title: "Contact Support",
     url: "#",
     icon: HelpCircle,
-  },
-];
-
-const settingsItems = [
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
-  {
-    title: "Chat",
-    url: "#",
-    icon: MessageSquare,
   },
 ];
 
@@ -95,7 +77,6 @@ export function AppSidebar() {
   const { open } = useSidebar();
   const pathname = usePathname();
   const pathnameList = pathname.split("/");
-  console.log(pathnameList, pathnameList.length);
 
   return (
     <Sidebar collapsible="icon">
@@ -117,7 +98,7 @@ export function AppSidebar() {
 
         {/* Proxy Management Section */}
         <SidebarGroup>
-          <SidebarGroupLabel className="border-b pb-1">
+          <SidebarGroupLabel className="border-b pb-2 mb-1">
             Proxy Management
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -147,7 +128,7 @@ export function AppSidebar() {
 
         {/* Account Section */}
         <SidebarGroup>
-          <SidebarGroupLabel className="border-b pb-1">
+          <SidebarGroupLabel className="border-b pb-2 mb-1">
             Account
           </SidebarGroupLabel>
           <SidebarGroupContent>
@@ -157,7 +138,11 @@ export function AppSidebar() {
                   <SidebarMenuButton asChild>
                     <a
                       href={item.link}
-                      className="hover:text-blue-600 hover:bg-blue-50"
+                      className={
+                        pathnameList.includes(item.link.split("/")[2])
+                          ? "text-blue-600 bg-blue-50"
+                          : "hover:text-blue-600 hover:bg-blue-50"
+                      }
                     >
                       <item.icon className="size-4" />
                       <span>{item.title}</span>
@@ -171,36 +156,12 @@ export function AppSidebar() {
 
         {/* Knowledge Desk Section */}
         <SidebarGroup>
-          <SidebarGroupLabel className="border-b pb-1">
+          <SidebarGroupLabel className="border-b pb-2 mb-1">
             Knowledge Desk
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>
               {knowledgeDeskItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton asChild>
-                    <a
-                      href={item.link}
-                      className="hover:text-blue-600 hover:bg-blue-50"
-                    >
-                      <item.icon className="size-4" />
-                      <span>{item.title}</span>
-                    </a>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
-
-        {/* Settings & Chat Section */}
-        <SidebarGroup>
-          <SidebarGroupLabel className="border-b pb-1">
-            Settings & Chat
-          </SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {settingsItems.map((item) => (
                 <SidebarMenuItem key={item.title}>
                   <SidebarMenuButton asChild>
                     <a
