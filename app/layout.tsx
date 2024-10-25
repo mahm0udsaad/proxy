@@ -5,11 +5,11 @@ import { ClerkProvider } from "@clerk/nextjs";
 export const metadata: Metadata = {
   metadataBase: new URL("https://crum-blab.vercel.app"),
   title: {
-    default: "CrumbLab | Expert Branding & Digital Services",
+    default: "Power Proxy | Reliable Mobile Proxy Services",
     template: "%s | CrumbLab",
   },
   description:
-    "CrumbLab - Top agency providing Branding, Logo Design, SEO, Video Editing, and more. Boost your digital presence today!",
+    "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
   keywords: [
     "Branding",
     "Logo Design",
@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "CrumbLab Agency" }],
   openGraph: {
-    title: "CrumbLab | Expert Branding & Digital Services",
+    title: "Power Proxy | Reliable Mobile Proxy Services",
     description:
-      "Get expert services in Branding, SEO, Video Editing, and more to enhance your business presence.",
+      "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
     url: "https://crum-blab.vercel.app/",
     siteName: "CrumbLab",
     images: [
       {
-        url: "/assets/logo_small.png",
+        url: "/logo.png",
         width: 800,
         height: 600,
         alt: "CrumbLab Logo",
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
     description:
       "Get expert services in Branding, SEO, Video Editing, and more to enhance your business presence.",
     creator: "@crumbLab",
-    images: ["/assets/logo_small.png"],
+    images: ["/logo.png"],
   },
   icons: {
     icon: "/logo.png",
