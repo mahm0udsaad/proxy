@@ -33,7 +33,7 @@ export default function ContactSupport() {
                 asChild
               >
                 <a
-                  href="https://api.whatsapp.com/send?phone=447495964137"
+                  href="https://api.whatsapp.com/send?phone=31646743991"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
