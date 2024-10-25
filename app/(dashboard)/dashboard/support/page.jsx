@@ -1,0 +1,60 @@
+import React from "react";
+import { MessageCircle, Clock, CheckCircle } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+
+export default function ContactSupport() {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white p-8">
+      <div className="max-w-2xl mx-auto space-y-12">
+        <div className="text-center space-y-4">
+          <h1 className="text-4xl font-bold text-blue-900">Contact Support</h1>
+          <p className="text-xl text-blue-600">We're here to help you 24/7</p>
+        </div>
+
+        <Card className="shadow-xl border-blue-100 overflow-hidden">
+          <div className="bg-blue-600 p-6 text-white">
+            <CardTitle className="text-3xl font-bold">Get in Touch</CardTitle>
+            <CardDescription className="text-blue-100 mt-2">
+              Reach out to us via WhatsApp for quick and efficient support
+            </CardDescription>
+          </div>
+          <CardContent className="p-8">
+            <div className="flex flex-col items-center space-y-6">
+              <Button
+                size="lg"
+                className="bg-green-500 hover:bg-green-600 text-white w-full max-w-md text-lg h-14"
+                asChild
+              >
+                <a
+                  href="https://api.whatsapp.com/send?phone=447495964137"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <MessageCircle className="mr-2 h-6 w-6" /> Contact via
+                  WhatsApp
+                </a>
+              </Button>
+              <div className="text-center text-gray-600 space-y-4 max-w-md">
+                <div className="flex items-center justify-center space-x-2">
+                  <Clock className="text-blue-600 h-5 w-5" />
+                  <span className="font-semibold">Available 24/7</span>
+                </div>
+                <div className="flex items-center justify-center space-x-2">
+                  <CheckCircle className="text-green-500 h-5 w-5" />
+                  <span>Typically reply within minutes</span>
+                </div>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    </div>
+  );
+}

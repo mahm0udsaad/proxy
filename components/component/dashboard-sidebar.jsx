@@ -32,19 +32,16 @@ import { usePathname } from "next/navigation";
 const proxyManagementItems = [
   {
     title: "Your Proxies",
-    url: "#",
     icon: Globe,
     link: "main",
   },
   {
     title: "Add New Proxies",
-    url: "#",
     icon: Plus,
     link: "/dashboard/add-proxy",
   },
   {
     title: "Billing & Renewals",
-    url: "#",
     icon: CreditCard,
     link: "/dashboard/proxy-renewals",
   },
@@ -53,13 +50,11 @@ const proxyManagementItems = [
 const accountItems = [
   {
     title: "Your Account",
-    url: "#",
     icon: User,
     link: "/dashboard/account",
   },
   {
     title: "Purchases",
-    url: "#",
     icon: ShoppingBag,
     link: "/dashboard/purchases",
   },
@@ -68,7 +63,7 @@ const accountItems = [
 const knowledgeDeskItems = [
   {
     title: "Contact Support",
-    url: "#",
+    link: "/dashboard/support",
     icon: HelpCircle,
   },
 ];
