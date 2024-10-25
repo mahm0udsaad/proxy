@@ -3,7 +3,7 @@ import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://crum-blab.vercel.app"),
+  metadataBase: new URL("https://powerproxies.vercel.app"),
   title: {
     default: "Power Proxy | Reliable Mobile Proxy Services",
     template: "%s | CrumbLab",
@@ -26,7 +26,7 @@ export const metadata: Metadata = {
     title: "Power Proxy | Reliable Mobile Proxy Services",
     description:
       "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
-    url: "https://crum-blab.vercel.app/",
+    url: "https://powerproxies.vercel.app/",
     siteName: "CrumbLab",
     images: [
       {
