@@ -1,12 +1,12 @@
-import type { Metadata } from "next";
 import "./globals.css";
+import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://powerproxies.vercel.app"),
   title: {
     default: "Power Proxy | Reliable Mobile Proxy Services",
-    template: "%s | CrumbLab",
+    template: "%s | Power Proxy",
   },
   description:
     "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
@@ -19,21 +19,21 @@ export const metadata: Metadata = {
     "Video Editing",
     "Marketing Video",
     "Social Media Banners",
-    "CrumbLab",
+    "Power Proxy",
   ],
-  authors: [{ name: "CrumbLab Agency" }],
+  authors: [{ name: "Power Proxy" }],
   openGraph: {
     title: "Power Proxy | Reliable Mobile Proxy Services",
     description:
       "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
     url: "https://powerproxies.vercel.app/",
-    siteName: "CrumbLab",
+    siteName: "Power Proxy",
     images: [
       {
         url: "/logo.png",
         width: 800,
         height: 600,
-        alt: "CrumbLab Logo",
+        alt: "Power Proxy Logo",
       },
     ],
     locale: "en_US",
@@ -41,10 +41,10 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "CrumbLab | Expert Branding & Digital Services",
+    title: "Power Proxy | Reliable Mobile Proxy Services",
     description:
-      "Get expert services in Branding, SEO, Video Editing, and more to enhance your business presence.",
-    creator: "@crumbLab",
+      "Power Proxy - Leading provider of fast and secure mobile proxy services. Enhance your online privacy and web scraping capabilities.",
+    creator: "@PowerProxy",
     images: ["/logo.png"],
   },
   icons: {
