@@ -1,5 +1,5 @@
 import React from "react";
-import { MessageCircle, Clock, CheckCircle } from "lucide-react";
+import { MessageCircle, Send, Mail, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
   Card,
