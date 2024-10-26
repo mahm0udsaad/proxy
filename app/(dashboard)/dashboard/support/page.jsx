@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { MessageCircle, Send, Mail, Clock, CheckCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -54,15 +55,15 @@ export default function ContactSupport() {
                   <Send className="mr-2 h-6 w-6" /> Contact via Telegram
                 </a>
               </Button>
-              <Button
-                size="lg"
-                className="bg-gray-700 hover:bg-gray-800 text-white w-full h-14 text-lg"
-                asChild
-              >
-                <a href="mailto:Info@powergram.nl">
+              <form className="w-full" action="mailto:Info@powergram.nl">
+                <Button
+                  type="submit"
+                  size="lg"
+                  className="bg-gray-700 hover:bg-gray-800 text-white w-full h-14 text-lg"
+                >
                   <Mail className="mr-2 h-6 w-6" /> Contact via Email
-                </a>
-              </Button>
+                </Button>
+              </form>
               <div className="text-center text-gray-600 space-y-4 max-w-md">
                 <div className="flex items-center justify-center space-x-2">
                   <Clock className="text-blue-600 h-5 w-5" />
