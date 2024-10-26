@@ -41,6 +41,28 @@ export default function ContactSupport() {
                   WhatsApp
                 </a>
               </Button>
+              <Button
+                size="lg"
+                className="bg-blue-500 hover:bg-blue-600 text-white w-full h-14 text-lg"
+                asChild
+              >
+                <a
+                  href="https://t.me/Your_plug"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Send className="mr-2 h-6 w-6" /> Contact via Telegram
+                </a>
+              </Button>
+              <Button
+                size="lg"
+                className="bg-gray-700 hover:bg-gray-800 text-white w-full h-14 text-lg"
+                asChild
+              >
+                <a href="mailto:Info@powergram.nl">
+                  <Mail className="mr-2 h-6 w-6" /> Contact via Email
+                </a>
+              </Button>
               <div className="text-center text-gray-600 space-y-4 max-w-md">
                 <div className="flex items-center justify-center space-x-2">
                   <Clock className="text-blue-600 h-5 w-5" />
