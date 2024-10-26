@@ -29,7 +29,7 @@ export default function ContactSupport() {
             <div className="flex flex-col items-center space-y-6">
               <Button
                 size="lg"
-                className="bg-green-500 hover:bg-green-600 text-white w-full max-w-md text-lg h-14"
+                className="bg-green-500 hover:bg-green-600 text-white w-full h-14 text-lg"
                 asChild
               >
                 <a
