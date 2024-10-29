@@ -5,12 +5,12 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 
 const DashboardHeader = ({ title }) => {
   return (
-    <header className="bg-blue-900 text-white shadow-sm">
-      <div className="px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        <div className="flex gap-2">
-          <SidebarTrigger className="text-2xl" />
-          <h1 className="text-2xl font-bold">{title}</h1>
-        </div>
+    <div className="mb-4 flex justify-between items-center bg-gradient-to-r from-blue-600 to-blue-800 text-white p-4 rounded-lg">
+      <h1 className="text-2xl font-bold flex items-center">
+        <SidebarTrigger className="mx-2 text-2xl" />
+        {title}
+      </h1>
+      <div className="flex space-x-2">
         <div className="flex items-center space-x-4">
           <div className="text-sm">
             Balance: <span className="font-semibold">$0</span>
@@ -31,7 +31,8 @@ const DashboardHeader = ({ title }) => {
           </Button>
         </div>
       </div>
-    </header>
+    </div>
   );
 };
+
 export default DashboardHeader;

@@ -10,7 +10,9 @@ export default async function Layout({ children }) {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main className="bg-gray-100 w-full overflow-x-hidden">{children}</main>
+      <main className="w-full overflow-x-hidden container mx-auto px-4 py-2 space-y-4">
+        {children}
+      </main>
     </SidebarProvider>
   );
 }

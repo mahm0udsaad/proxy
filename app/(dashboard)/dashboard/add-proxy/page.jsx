@@ -38,7 +38,7 @@ export default function ProxyConfiguration() {
   return (
     <div className="min-h-screen bg-gray-50 ">
       <DashboardHeader title="Add Proxy" />
-      <div className="p-8 mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
         {/* Left Column */}
         <div className="lg:col-span-2 space-y-8">
           <Card>

@@ -55,10 +55,10 @@ export default function ProxyRenewals() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 ">
+    <>
       <DashboardHeader title="Proxy Renewals" />
 
-      <div className="space-y-8 p-8">
+      <div className="space-y-6">
         <div>
           <p className="text-gray-600">
             Manage and renew your proxies to keep them active and ensure
@@ -222,6 +222,6 @@ export default function ProxyRenewals() {
           </CardContent>
         </Card>
       </div>
-    </div>
+    </>
   );
 }
