@@ -18,17 +18,16 @@ export default function ProxyListTable({ proxies }) {
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-100">
-              <TableHead className="w-[200px]">IMEI / Actions</TableHead>
-              <TableHead>Nick</TableHead>
-              <TableHead>Ext IP</TableHead>
-              <TableHead>Ports</TableHead>
-              <TableHead>Model, Device</TableHead>
-              <TableHead>SIM, Carrier</TableHead>
-              <TableHead>Net Mode</TableHead>
-              <TableHead>Signal, Data</TableHead>
-              <TableHead>Modem IP</TableHead>
-              <TableHead>Country</TableHead>
-              <TableHead className="text-right">Actions</TableHead>
+              <TableHead className="py-4 px-6">IMEI/ID</TableHead>
+              <TableHead className="py-4 px-6">Status</TableHead>
+              <TableHead className="py-4 px-6">Country</TableHead>
+              <TableHead className="py-4 px-6">External IP</TableHead>
+              <TableHead className="py-4 px-6">Ports</TableHead>
+              <TableHead className="py-4 px-6">Username/Password</TableHead>
+              <TableHead className="py-4 px-6">Added Time</TableHead>
+              <TableHead className="py-4 px-6">Network Type</TableHead>
+              <TableHead className="py-4 px-6">Ping Stats</TableHead>
+              <TableHead className="py-4 px-6 text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
