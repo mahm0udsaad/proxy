@@ -6,21 +6,19 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Search, RefreshCw, Globe } from "lucide-react";
 import ProxyListRow from "@/components/component/proxy-list-row.jsx";
 import DashboardHeader from "@/components/component/dashboard-header";
 export default function ProxyListTable({ proxies }) {
   return (
     <>
       <DashboardHeader title="Proxy List" />
+
       <div className="custom-scrollbar overflow-x-auto bg-white rounded-lg shadow">
         <Table>
           <TableHeader>
             <TableRow className="bg-gray-100">
-              <TableHead className="w-[150px]">Actions</TableHead>
-              <TableHead>IMEI</TableHead>
+              <TableHead className="w-[200px]">IMEI / Actions</TableHead>
               <TableHead>Nick</TableHead>
               <TableHead>Ext IP</TableHead>
               <TableHead>Ports</TableHead>
@@ -29,6 +27,7 @@ export default function ProxyListTable({ proxies }) {
               <TableHead>Net Mode</TableHead>
               <TableHead>Signal, Data</TableHead>
               <TableHead>Modem IP</TableHead>
+              <TableHead>Country</TableHead>
               <TableHead className="text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>

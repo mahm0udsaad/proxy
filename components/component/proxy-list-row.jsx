@@ -8,6 +8,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
+  Globe,
   Check,
   Wifi,
   Trash,
@@ -16,6 +17,7 @@ import {
   Download,
   Power,
   RotateCw,
+  Plus,
 } from "lucide-react";
 import { TableCell, TableRow } from "../ui/table";
 
@@ -23,24 +25,28 @@ export default function ProxyListRow({ proxy }) {
   return (
     <TableRow className="hover:bg-blue-50 transition-colors duration-200">
       <TableCell>
-        <div className="flex space-x-2">
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-blue-600 hover:text-blue-700 hover:bg-blue-100"
-          >
-            Edit Modem
-          </Button>
-          <Button
-            variant="outline"
-            size="sm"
-            className="text-green-600 hover:text-green-700 hover:bg-green-100"
-          >
-            Add Port
-          </Button>
+        <div className="flex flex-col space-y-1">
+          <div className="font-medium text-center">
+            {proxy.modem_details.IMEI}
+          </div>
+          <div className="flex space-x-2">
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-blue-600 hover:text-blue-700 hover:bg-blue-100"
+            >
+              <Edit className="h-4 w-4 mr-1" /> Edit Modem
+            </Button>
+            <Button
+              variant="outline"
+              size="sm"
+              className="text-green-600 hover:text-green-700 hover:bg-green-100"
+            >
+              <Plus className="h-4 w-4 mr-1" /> Add Port
+            </Button>
+          </div>
         </div>
       </TableCell>
-      <TableCell className="font-medium">{proxy.modem_details.IMEI}</TableCell>
       <TableCell>{proxy.modem_details.NICK}</TableCell>
       <TableCell className="font-mono">{proxy.net_details.EXT_IP}</TableCell>
       <TableCell>
@@ -102,6 +108,7 @@ export default function ProxyListRow({ proxy }) {
         </div>
       </TableCell>
       <TableCell className="font-mono">{proxy.net_details.LOCAL_IP}</TableCell>
+      <TableCell>{proxy.net_details.COUNTRY}</TableCell>
       <TableCell>
         <div className="flex items-center space-x-2">
           <TooltipProvider>
