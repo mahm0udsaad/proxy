@@ -8,11 +8,11 @@ export async function fetchUserInfo() {
 
   // Define the list of possible countries
   const countries = [
-    "United States",
-    "Canada",
-    "Germany",
-    "Netherlands",
-    "Australia",
+    { name: "United States", code: "US" },
+    { name: "Canada", code: "CA" },
+    { name: "Germany", code: "DE" },
+    { name: "Netherlands", code: "NL" },
+    { name: "Australia", code: "AU" },
   ];
 
   // Map through each object in the array and add a random country
@@ -23,7 +23,8 @@ export async function fetchUserInfo() {
       ...item,
       net_details: {
         ...item.net_details,
-        COUNTRY: randomCountry,
+        COUNTRY: randomCountry.name,
+        COUNTRYCODE: randomCountry.code,
       },
     };
   });

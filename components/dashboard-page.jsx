@@ -24,9 +24,9 @@ export default function ProxyListTable({ proxies }) {
               <TableHead className="py-4 px-6">External IP</TableHead>
               <TableHead className="py-4 px-6">Ports</TableHead>
               <TableHead className="py-4 px-6">Username/Password</TableHead>
-              <TableHead className="py-4 px-6">Added Time</TableHead>
               <TableHead className="py-4 px-6">Network Type</TableHead>
               <TableHead className="py-4 px-6">Ping Stats</TableHead>
+              <TableHead className="py-4 px-6 w-48">Added Time</TableHead>
               <TableHead className="py-4 px-6 text-right">Actions</TableHead>
             </TableRow>
           </TableHeader>

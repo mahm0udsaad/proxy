@@ -46,12 +46,12 @@ export default function ProxyListRow({ proxy }) {
       </TableCell>
       <TableCell className="py-4">
         <div className="flex flex-col items-center space-y-1">
-          {/* <img
-          src={`https://flagcdn.com/w40/${proxy.net_details.COUNTRYCODE}.png`}
-          width="40"
-          alt={`Flag of ${proxy.net_details.COUNTRY}`}
-          className="rounded"
-        /> */}
+          <img
+            src={`https://flagcdn.com/w40/${proxy.net_details.COUNTRYCODE}.png`}
+            width="40"
+            alt={`Flag of ${proxy.net_details.COUNTRY}`}
+            className="rounded"
+          />
           <span className="text-sm">{proxy.net_details.COUNTRY}</span>
         </div>
       </TableCell>
@@ -88,15 +88,17 @@ export default function ProxyListRow({ proxy }) {
         </div>
       </TableCell>
       <TableCell className="py-4">
-        <div className="flex flex-col items-center space-y-1">
-          <Clock className="h-4 w-4 text-blue-500" />
-          <span>{proxy.modem_details.ADDED_TIME}</span>
-        </div>
-      </TableCell>
-      <TableCell className="py-4">
         {proxy.net_details.CurrentNetworkType}
       </TableCell>
       <TableCell className="py-4">{proxy.net_details.ping_stats}</TableCell>
+      <TableCell className="py-4 w-48">
+        <div className="flex items-center space-x-2">
+          <Clock className="h-4 w-4 text-blue-500 flex-shrink-0" />
+          <span className="text-sm">
+            {formatAddedTime(proxy.modem_details.ADDED_TIME)}
+          </span>
+        </div>
+      </TableCell>
       <TableCell className="py-4">
         <div className="flex items-center space-x-2">
           <TooltipProvider>
