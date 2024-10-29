@@ -47,12 +47,14 @@ export default function ProxyListRow({ proxy }) {
       <TableCell className="py-4">
         <div className="flex flex-col items-center space-y-1">
           <img
-            src={`https://flagcdn.com/w40/${proxy.net_details.COUNTRYCODE}.png`}
+            src={`https://flagcdn.com/w40/${proxy.net_details.COUNTRYCODE.toLowerCase()}.png`}
             width="40"
             alt={`Flag of ${proxy.net_details.COUNTRY}`}
             className="rounded"
           />
-          <span className="text-sm">{proxy.net_details.COUNTRY}</span>
+          <span className="text-sm text-center">
+            {proxy.net_details.COUNTRY}
+          </span>
         </div>
       </TableCell>
       <TableCell className="py-4 font-mono">
@@ -94,9 +96,7 @@ export default function ProxyListRow({ proxy }) {
       <TableCell className="py-4 w-48">
         <div className="flex items-center space-x-2">
           <Clock className="h-4 w-4 text-blue-500 flex-shrink-0" />
-          <span className="text-sm">
-            {formatAddedTime(proxy.modem_details.ADDED_TIME)}
-          </span>
+          <span className="text-sm">{proxy.modem_details.ADDED_TIME}</span>
         </div>
       </TableCell>
       <TableCell className="py-4">
