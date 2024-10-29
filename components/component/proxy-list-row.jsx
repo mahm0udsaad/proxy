@@ -18,6 +18,7 @@ import {
   Power,
   RotateCw,
   Plus,
+  X,
 } from "lucide-react";
 import { TableCell, TableRow } from "../ui/table";
 
