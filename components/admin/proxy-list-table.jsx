@@ -47,7 +47,10 @@ const ProxyListTable = ({ proxies }) => {
       </TableHeader>
       <TableBody>
         {proxies.map((proxy, index) => (
-          <TableRow className="hover:bg-blue-50 transition-colors duration-200">
+          <TableRow
+            key={index}
+            className="hover:bg-blue-50 transition-colors duration-200"
+          >
             <TableCell>
               <div className="flex flex-col space-y-1">
                 <div className="font-medium text-center">

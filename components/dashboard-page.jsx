@@ -9,11 +9,11 @@ import {
 import { Button } from "@/components/ui/button";
 import ProxyListRow from "@/components/component/proxy-list-row.jsx";
 import DashboardHeader from "@/components/component/dashboard-header";
+
 export default function ProxyListTable({ proxies }) {
   return (
     <>
       <DashboardHeader title="Proxy List" />
-
       <div className="custom-scrollbar overflow-x-auto bg-white rounded-lg shadow">
         <Table>
           <TableHeader>
