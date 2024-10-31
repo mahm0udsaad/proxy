@@ -9,11 +9,46 @@ export async function fetchUserInfo() {
 }
 
 export async function rotateProxy(imei) {
-  const response = await fetch(`${process.env.BASE_URL}/rotate-ip/${imei}`, {
-    method: "POST",
-  });
-  const data = await response.json();
-  return data;
+  try {
+    const response = await fetch(`${process.env.BASE_URL}/rotate-ip/${imei}`, {
+      method: "POST",
+      // Add timeout and error handling
+      signal: AbortSignal.timeout(10000), // 10-second timeout
+    });
+
+    if (!response.ok) {
+      // Handle non-200 responses
+      const errorText = await response.text();
+      throw new Error(
+        `HTTP error! status: ${response.status}, message: ${errorText}`,
+      );
+    }
+
+    const data = await response.json();
+
+    // Additional validation of returned data
+    if (!data || (!data.result && !data.EXT_IP1)) {
+      throw new Error("Invalid response from server");
+    }
+
+    return data;
+  } catch (error) {
+    // Comprehensive error handling
+    if (error.name === "AbortError") {
+      throw new Error(
+        "Request timed out. Please check your network connection.",
+      );
+    }
+
+    if (error instanceof TypeError) {
+      throw new Error("Network error. Please check your internet connection.");
+    }
+
+    // Re-throw the error with a more informative message
+    throw new Error(
+      error.message || "Failed to rotate IP. Please try again later.",
+    );
+  }
 }
 
 export async function fetchSpeedTestData({
