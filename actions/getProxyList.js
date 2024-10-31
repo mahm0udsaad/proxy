@@ -62,102 +62,59 @@ export async function fetchSpeedTestData({
     const response = await fetch(`${process.env.BASE_URL}/speed-test/`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ ipAddress, port, imei, username, password }),
-      // Add timeout to prevent hanging
-      signal: AbortSignal.timeout(30000), // 30 seconds timeout
+      body: JSON.stringify({
+        ipAddress: "188.245.37.125",
+        port: "7016",
+        imei: "352733105770960",
+        username: "proxy",
+        password: "proxy",
+      }),
     });
 
-    // Check if the response is successful
     if (!response.ok) {
       const errorText = await response.text();
-      throw new Error(
-        `HTTP error! status: ${response.status}, message: ${errorText}`,
-      );
+      throw new Error(`HTTP error: ${errorText}`);
     }
 
-    const contentType = response.headers.get("content-type");
-
-    // If it's JSON, check for explicit error
-    if (contentType && contentType.includes("application/json")) {
-      const json = await response.json();
-      if (json.error) {
-        throw new Error(json.error);
-      }
-      return json;
-    }
-
-    // If it's HTML, parse the content
     const html = await response.text();
-
-    // Validate HTML is not empty
-    if (!html || html.trim() === "") {
-      throw new Error("Received empty response from speed test");
-    }
-
     const root = parse(html);
 
-    // Robust parsing with fallback values
-    const imeiValue =
-      root.querySelector("h3")?.text.match(/IMEI: (\d+)/)?.[1] ||
-      root
-        .querySelector("h3")
-        ?.text.split(/IMEI:/i)[1]
-        ?.trim()
-        .split(/\s/)[0] ||
-      imei;
+    // IMEI extraction
+    const h3Text = root.querySelector("h3")?.text || "";
+    const imeiMatch = h3Text.match(/IMEI:\s*(\d+)/i);
+    const imeiValue = imeiMatch ? imeiMatch[1] : null;
 
-    const nick =
-      root.querySelector("h3")?.text.match(/NICK: (\w+)/)?.[1] ||
-      root
-        .querySelector("h3")
-        ?.text.split(/NICK:/i)[1]
-        ?.trim()
-        .split(/\s/)[0] ||
-      "Unknown";
+    // Nick extraction
+    const nickMatch = h3Text.match(/NICK:\s*(\w+)/i);
+    const nick = nickMatch ? nickMatch[1] : null;
 
-    const downloadSpeed =
-      root.querySelector("td")?.textContent.match(/\d+\.\d+mbps/)?.[0] ||
-      root
-        .querySelectorAll("td")?.[0]
-        ?.textContent.trim()
-        .match(/\d+\.\d+mbps/)?.[0] ||
-      "N/A";
+    // Speed extraction
+    const speedRows = root.querySelectorAll("table.modems tr");
+    const downloadSpeed = speedRows[1]?.querySelectorAll("td")[0]?.text.trim();
+    const uploadSpeed = speedRows[1]?.querySelectorAll("td")[1]?.text.trim();
 
-    const uploadSpeed =
-      root
-        .querySelectorAll("td")?.[1]
-        ?.textContent.match(/\d+\.\d+mbps/)?.[0] || "N/A";
+    // Result image extraction with simple cleanup
+    let resultImage = root.querySelector("img")?.getAttribute("src") || "";
 
-    const resultImage =
-      root.querySelector("img")?.getAttribute("src") ||
-      "https://via.placeholder.com/400x300.png?text=Speed+Test+Result";
-
-    // Validate required fields
-    if (!imeiValue || !downloadSpeed || !uploadSpeed) {
-      throw new Error("Unable to parse complete speed test results");
-    }
+    // Extract the actual URL from the string
+    const urlMatch = resultImage.match(/http:\/\/.*\.png/);
+    resultImage = urlMatch
+      ? urlMatch[0].replace("http:", "https:")
+      : "https://via.placeholder.com/400x300.png?text=Speed+Test+Result";
 
     return {
       imei: imeiValue,
-      nick,
-      downloadSpeed,
-      uploadSpeed,
+      nick: nick || "Unknown",
+      downloadSpeed: downloadSpeed || "N/A",
+      uploadSpeed: uploadSpeed || "N/A",
       resultImage,
     };
   } catch (error) {
-    console.error("Speed Test Fetch Error:", error);
-
-    // Provide a more user-friendly error message
-    if (error.name === "AbortError") {
-      throw new Error("Speed test timed out. Please try again.");
-    }
-
-    throw new Error(
-      error.message ||
-        "Failed to perform speed test. Please check your connection and try again.",
-    );
+    console.error("Comprehensive Speed Test Error:", error);
+    throw error;
   }
 }
+
 export async function fetchConnectionResults(imei) {
   const response = await fetch(
     `${process.env.BASE_URL}/connection-results/${imei}`,
