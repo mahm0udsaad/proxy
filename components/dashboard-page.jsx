@@ -20,7 +20,7 @@ export default function ProxyListTable({ proxies }) {
             <TableRow className="bg-gray-100">
               <TableHead className="py-4 px-6">IMEI/ID</TableHead>
               <TableHead className="py-4 px-6">Status</TableHead>
-              <TableHead className="py-4 px-6">Country</TableHead>
+              <TableHead className="py-4 px-6">Operator</TableHead>
               <TableHead className="py-4 px-6">External IP</TableHead>
               <TableHead className="py-4 px-6">Ports</TableHead>
               <TableHead className="py-4 px-6">Username/Password</TableHead>
@@ -32,7 +32,7 @@ export default function ProxyListTable({ proxies }) {
           </TableHeader>
           <TableBody>
             {proxies.map((proxy, index) => (
-              <ProxyListRow key={index} proxy={proxy} />
+              <ProxyListRow key={index} proxyData={proxy} />
             ))}
           </TableBody>
         </Table>
