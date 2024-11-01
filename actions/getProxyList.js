@@ -10,11 +10,13 @@ export async function fetchUserInfo() {
 
 export async function rotateProxy(imei) {
   try {
-    const response = await fetch(`${process.env.BASE_URL}/rotate-ip/${imei}`, {
-      method: "POST",
-      // Add timeout and error handling
-      signal: AbortSignal.timeout(10000), // 10-second timeout
-    });
+    const response = await fetch(
+      `${process.env.BASE_URL}/rotate-ip/860191063669325`,
+      {
+        method: "POST",
+        // Add timeout and error handling
+      },
+    );
 
     if (!response.ok) {
       // Handle non-200 responses
@@ -117,7 +119,7 @@ export async function fetchSpeedTestData({
 
 export async function fetchConnectionResults(imei) {
   const response = await fetch(
-    `${process.env.BASE_URL}/connection-results/${imei}`,
+    `${process.env.BASE_URL}/connection-results/860191063669325`,
   );
   console.log(response);
 
