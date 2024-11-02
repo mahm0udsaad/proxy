@@ -14,7 +14,6 @@ export async function rotateProxy(imei) {
       `${process.env.BASE_URL}/rotate-ip/860191063669325`,
       {
         method: "POST",
-        // Add timeout and error handling
       },
     );
 
@@ -80,6 +79,7 @@ export async function fetchSpeedTestData({
 
     const html = await response.text();
     const root = parse(html);
+    console.log(root);
 
     // IMEI extraction
     const h3Text = root.querySelector("h3")?.text || "";
