@@ -1,14 +1,46 @@
 "use server";
 import { parse } from "node-html-parser";
+import { HTMLElement } from "node-html-parser";
+import {
+  AndroidInfo,
+  ModemDetails,
+  NetworkDetails,
+  ProxyCredentials,
+  RotateProxyResponse,
+  SpeedTestParams,
+  SpeedTestResult,
+  ConnectionResult,
+} from "@/types";
 
-export async function fetchUserInfo() {
+interface UserStatus {
+  GENTIME: string;
+  IS_LOCKED: string;
+  IS_REBOOTING: string;
+  IS_ROTATED: string;
+  MSG: string;
+  N: number;
+  STATE: "added" | "removed" | "pending"; // Add other possible states
+  android: AndroidInfo;
+  modem_details: ModemDetails;
+  net_details: NetworkDetails;
+  proxy_creds: ProxyCredentials;
+}
+
+interface ConnectionTestResponse {
+  IMEI: string | null;
+  NICK: string | null;
+  results: ConnectionResult[];
+}
+
+export async function fetchUserInfo(): Promise<UserStatus | undefined> {
   const response = await fetch(`${process.env.BASE_URL}/show-user-info`);
   const data = await response.json();
+  console.log(data.userStatus);
 
   return data?.userStatus;
 }
 
-export async function rotateProxy(imei) {
+export async function rotateProxy(imei: string): Promise<RotateProxyResponse> {
   try {
     const response = await fetch(
       `${process.env.BASE_URL}/rotate-ip/860191063669325`,
@@ -18,37 +50,40 @@ export async function rotateProxy(imei) {
     );
 
     if (!response.ok) {
-      // Handle non-200 responses
       const errorText = await response.text();
       throw new Error(
         `HTTP error! status: ${response.status}, message: ${errorText}`,
       );
     }
 
-    const data = await response.json();
+    const data: RotateProxyResponse = await response.json();
 
-    // Additional validation of returned data
     if (!data || (!data.result && !data.EXT_IP1)) {
       throw new Error("Invalid response from server");
     }
 
     return data;
   } catch (error) {
-    // Comprehensive error handling
-    if (error.name === "AbortError") {
+    if (error instanceof Error) {
+      if (error.name === "AbortError") {
+        throw new Error(
+          "Request timed out. Please check your network connection.",
+        );
+      }
+
+      if (error instanceof TypeError) {
+        throw new Error(
+          "Network error. Please check your internet connection.",
+        );
+      }
+
       throw new Error(
-        "Request timed out. Please check your network connection.",
+        error.message || "Failed to rotate IP. Please try again later.",
       );
     }
 
-    if (error instanceof TypeError) {
-      throw new Error("Network error. Please check your internet connection.");
-    }
-
-    // Re-throw the error with a more informative message
-    throw new Error(
-      error.message || "Failed to rotate IP. Please try again later.",
-    );
+    // Handle non-Error objects
+    throw new Error("An unexpected error occurred");
   }
 }
 
@@ -58,7 +93,7 @@ export async function fetchSpeedTestData({
   imei,
   username,
   password,
-}) {
+}: SpeedTestParams): Promise<SpeedTestResult> {
   try {
     const response = await fetch(`${process.env.BASE_URL}/speed-test/`, {
       method: "POST",
@@ -79,7 +114,6 @@ export async function fetchSpeedTestData({
 
     const html = await response.text();
     const root = parse(html);
-    console.log(root);
 
     // IMEI extraction
     const h3Text = root.querySelector("h3")?.text || "";
@@ -117,11 +151,12 @@ export async function fetchSpeedTestData({
   }
 }
 
-export async function fetchConnectionResults(imei) {
+export async function fetchConnectionResults(
+  imei: string,
+): Promise<ConnectionTestResponse> {
   const response = await fetch(
     `${process.env.BASE_URL}/connection-results/860191063669325`,
   );
-  console.log(response);
 
   const html = await response.text();
   const root = parse(html);
@@ -135,7 +170,7 @@ export async function fetchConnectionResults(imei) {
   const rows = root.querySelectorAll("table.modems tr:not(:first-child)");
 
   // Parse connection test results
-  const results = rows.map((row) => {
+  const results: ConnectionResult[] = rows.map((row: HTMLElement) => {
     const cells = row.querySelectorAll("td");
     return {
       connections: parseInt(cells[0].textContent.trim()),
@@ -144,11 +179,12 @@ export async function fetchConnectionResults(imei) {
       timePerRequestMs: parseFloat(cells[3].textContent.trim()),
     };
   });
-  console.log(results);
 
-  return {
+  const connectionTestResponse: ConnectionTestResponse = {
     imei: imeiValue,
     nick,
     results,
   };
+
+  return connectionTestResponse;
 }

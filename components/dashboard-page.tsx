@@ -1,4 +1,4 @@
-import React from "react";
+import React, { FC } from "react";
 import {
   Table,
   TableBody,
@@ -7,10 +7,11 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import ProxyListRow from "@/components/component/proxy-list-row.jsx";
+import ProxyListRow from "@/components/component/proxy-list-row";
 import DashboardHeader from "@/components/component/dashboard-header";
+import { ProxyListTableProps } from "@/types";
 
-export default function ProxyListTable({ proxies }) {
+const ProxyListTable: FC<ProxyListTableProps> = ({ proxies }) => {
   return (
     <>
       <DashboardHeader title="Proxy List" />
@@ -60,4 +61,6 @@ export default function ProxyListTable({ proxies }) {
       </div>
     </>
   );
-}
+};
+
+export default ProxyListTable;

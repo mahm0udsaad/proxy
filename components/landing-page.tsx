@@ -5,7 +5,7 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Check, Star } from "lucide-react";
 import Features from "@/components/component/features-list";
-import { clientLogos, pricingPlans, testimonials, faqs } from "@/data";
+import { clientLogos, pricingPlans, testimonials, faqs } from "@/data/index";
 import Link from "next/link";
 import {
   Accordion,
